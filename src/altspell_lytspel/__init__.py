@@ -21,14 +21,14 @@ from lytspel.conv import Converter
 import threading
 
 
-lock = threading.Lock()
-converter = Converter()
+_lock = threading.Lock()
+_converter = Converter()
 
 class Plugin(PluginBase):
     def convert_to_altspell(self, tradspell_text: str) -> str:
         # use a lock to make the function thread-safe
-        with lock:
-            para = converter.convert_para(tradspell_text)
+        with _lock:
+            para = _converter.convert_para(tradspell_text)
 
         return para
 
