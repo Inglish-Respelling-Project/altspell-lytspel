@@ -31,6 +31,9 @@ class Dictionary:
         with pkg_resources.open_text('lytspel', 'lytspel-dict.csv') as csvfile:
             csvreader = csv.reader(csvfile)
 
+            # skip header
+            next(csvreader)
+
             for row in csvreader:
 
                 # Discard redirects so that Lytspel words map to only one English word
