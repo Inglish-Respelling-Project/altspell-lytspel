@@ -16,9 +16,9 @@
     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 '''
 
+import threading
 from altspell.plugin import PluginBase
 from lytspel.conv import Converter
-import threading
 
 
 _lock = threading.Lock()
