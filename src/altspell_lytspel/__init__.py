@@ -18,18 +18,18 @@
 
 import threading
 from altspell.plugin import PluginBase
-from lytspel.conv import Converter
+from lytspel.conv import Converter as FwdConverter
 
 
 class Plugin(PluginBase):
     def __init__(self):
-        self._lock = threading.Lock()
-        self._converter = Converter()
+        self._fwd_lock = threading.Lock()
+        self._fwd_converter = FwdConverter()
 
     def convert_to_altspell(self, tradspell_text: str) -> str:
         # use a lock to make the function thread-safe
-        with self._lock:
-            para = self._converter.convert_para(tradspell_text)
+        with self._fwd_lock:
+            para = self._fwd_converter.convert_para(tradspell_text)
 
         return para
 
