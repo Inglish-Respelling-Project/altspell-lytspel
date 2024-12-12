@@ -18,13 +18,19 @@
 
 from altspell.plugin import PluginBase
 from lytspel.conv import Converter
+import threading
 
 
+lock = threading.Lock()
 converter = Converter()
 
 class Plugin(PluginBase):
     def convert_to_altspell(self, tradspell_text: str) -> str:
-        return converter.convert_para(tradspell_text)
+        # use a lock to make the function thread-safe
+        with lock:
+            para = converter.convert_para(tradspell_text)
+
+        return para
 
     def convert_to_tradspell(self, altspell_text: str) -> str:
         raise NotImplementedError
