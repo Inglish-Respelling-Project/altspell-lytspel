@@ -19,7 +19,7 @@
 import csv
 import importlib.resources as pkg_resources
 import spacy
-from lytspel.util import get_elem, printmsg
+from lytspel.util import get_elem
 
 
 class Dictionary:
@@ -53,8 +53,13 @@ class Dictionary:
 class Converter:
     _dict = Dictionary()
 
-    # Load spaCy without any unnecessary components
-    _nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner', 'tagger'])
+    try:
+        # Load spaCy without any unnecessary components
+        _nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
+    except OSError:
+        from spacy.cli import download
+        download('en_core_web_sm')
+        _nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
 
     def convert_para(self, text: str) -> str:
         out_tokens = []
