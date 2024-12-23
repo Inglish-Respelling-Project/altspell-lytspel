@@ -1,5 +1,5 @@
 '''
-    Altspell  Lytspel plugin for altspell.
+    Altspell-Lytspel  Lytspel plugin for altspell.
     Copyright (C) 2024  Nicholas Johnson
 
     This program is free software: you can redistribute it and/or modify

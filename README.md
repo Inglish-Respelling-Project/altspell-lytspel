@@ -1,3 +1,3 @@
-# Altspell-Lytspel
+# Altspell Lytspel
 
 Lytspel plugin for altspell.
