@@ -55,11 +55,11 @@ class Converter:
 
     try:
         # Load spaCy without any unnecessary components
-        _nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
+        _nlp = spacy.load('en_core_web_sm', enable=['tokenizer'])
     except OSError:
         from spacy.cli import download
         download('en_core_web_sm')
-        _nlp = spacy.load('en_core_web_sm', disable=['parser', 'ner'])
+        _nlp = spacy.load('en_core_web_sm', enable=['tokenizer'])
 
     def convert_para(self, text: str) -> str:
         out_tokens = []
