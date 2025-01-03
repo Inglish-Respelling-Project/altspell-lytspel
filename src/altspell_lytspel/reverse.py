@@ -19,7 +19,7 @@
 import csv
 import importlib.resources as pkg_resources
 from lytspel.util import get_elem
-from altspell.plugin.PluginBase import nlp
+from altspell.plugin import PluginBase
 
 
 class Dictionary:
@@ -52,7 +52,7 @@ class Dictionary:
 
 class Converter:
     _dict = Dictionary()
-    _nlp = nlp
+    _nlp = PluginBase.nlp
 
     def convert_para(self, text: str) -> str:
         out_tokens = []
