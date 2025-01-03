@@ -17,8 +17,8 @@
 '''
 
 import threading
-from altspell.plugin import PluginBase
 from lytspel.conv import Converter as FwdConverter
+from altspell.plugin import PluginBase
 from .reverse import Converter as RevConverter
 
 

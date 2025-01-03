@@ -18,8 +18,8 @@
 
 import csv
 import importlib.resources as pkg_resources
-import spacy
 from lytspel.util import get_elem
+from altspell.plugin.PluginBase import nlp
 
 
 class Dictionary:
@@ -52,14 +52,7 @@ class Dictionary:
 
 class Converter:
     _dict = Dictionary()
-
-    try:
-        # Load spaCy without any unnecessary components
-        _nlp = spacy.load('en_core_web_sm', enable=['tokenizer'])
-    except OSError:
-        from spacy.cli import download
-        download('en_core_web_sm')
-        _nlp = spacy.load('en_core_web_sm', enable=['tokenizer'])
+    _nlp = nlp
 
     def convert_para(self, text: str) -> str:
         out_tokens = []
