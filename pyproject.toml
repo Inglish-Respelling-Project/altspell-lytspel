@@ -17,7 +17,8 @@ classifiers = [
 ]
 dependencies = [
     "altspell",
-    "lytspel"
+    "lytspel",
+    "nlp-provider"
 ]
 
 [build-system]
