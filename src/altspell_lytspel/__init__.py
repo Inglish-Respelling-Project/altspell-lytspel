@@ -18,7 +18,7 @@
 
 import threading
 from lytspel.conv import Converter as FwdTranslator
-from altspell.plugin import PluginBase
+from altspell_plugins import PluginBase
 from .reverse import Translator as RevTranslator
 
 
@@ -28,13 +28,13 @@ class Plugin(PluginBase):
         self._fwd_translator = FwdTranslator()
         self._rev_translator = RevTranslator()
 
-    def translate_to_altspell(self, tradspell_text: str) -> str:
+    def translate_to_respelling(self, traditional_text: str) -> str:
         # use a lock to make the function thread-safe
         with self._lock:
-            para = self._fwd_translator.convert_para(tradspell_text)
+            para = self._fwd_translator.convert_para(traditional_text)
 
         return para
 
-    def translate_to_tradspell(self, altspell_text: str) -> str:
+    def translate_to_traditional_spelling(self, respelled_text: str) -> str:
         # use a lock to make the function thread-safe
-        return self._rev_translator.translate_para(altspell_text)
+        return self._rev_translator.translate_para(respelled_text)
