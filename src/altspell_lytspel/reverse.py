@@ -44,32 +44,32 @@ class Dictionary:
                     continue
 
                 # Don't capture the part of speech (PoS)
-                # PoS is used for the forward conversion, not the backward conversion
+                # PoS is used for the forward translation, not the backward translation
                 tradspell = get_elem(row, 0)
                 lytspel = get_elem(row, 3)
 
                 self.dict[lytspel] = tradspell
 
-class Converter:
+class Translator:
     _dict = Dictionary()
     _nlp = shared_nlp
 
-    def convert_para(self, text: str) -> str:
+    def translate_para(self, text: str) -> str:
         out_tokens = []
 
-        doc = Converter._nlp(text)
+        doc = Translator._nlp(text)
         for token in doc:
             token_lower = token.text.lower()
 
-            if token_lower in Converter._dict.dict:
+            if token_lower in Translator._dict.dict:
                 if token.text[0].isupper():
-                    word = Converter._dict.dict[token_lower]
+                    word = Translator._dict.dict[token_lower]
                     word = word[0].upper() + word[1:]
                     out_tokens.append(word)
                 else:
-                    out_tokens.append(Converter._dict.dict[token_lower])
-            elif token.text in Converter._dict.dict:
-                out_tokens.append(Converter._dict.dict[token.text])
+                    out_tokens.append(Translator._dict.dict[token_lower])
+            elif token.text in Translator._dict.dict:
+                out_tokens.append(Translator._dict.dict[token.text])
             else:
                 out_tokens.append(token.text)
 

@@ -17,24 +17,24 @@
 '''
 
 import threading
-from lytspel.conv import Converter as FwdConverter
+from lytspel.conv import Converter as FwdTranslator
 from altspell.plugin import PluginBase
-from .reverse import Converter as RevConverter
+from .reverse import Translator as RevTranslator
 
 
 class Plugin(PluginBase):
     def __init__(self):
         self._lock = threading.Lock()
-        self._fwd_converter = FwdConverter()
-        self._rev_converter = RevConverter()
+        self._fwd_translator = FwdTranslator()
+        self._rev_translator = RevTranslator()
 
-    def convert_to_altspell(self, tradspell_text: str) -> str:
+    def translate_to_altspell(self, tradspell_text: str) -> str:
         # use a lock to make the function thread-safe
         with self._lock:
-            para = self._fwd_converter.convert_para(tradspell_text)
+            para = self._fwd_translator.convert_para(tradspell_text)
 
         return para
 
-    def convert_to_tradspell(self, altspell_text: str) -> str:
+    def translate_to_tradspell(self, altspell_text: str) -> str:
         # use a lock to make the function thread-safe
-        return self._rev_converter.convert_para(altspell_text)
+        return self._rev_translator.translate_para(altspell_text)
