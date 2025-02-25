@@ -36,5 +36,4 @@ class Plugin(PluginBase):
         return para
 
     def translate_to_traditional_spelling(self, respelled_text: str) -> str:
-        # use a lock to make the function thread-safe
         return self._rev_translator.translate_para(respelled_text)
