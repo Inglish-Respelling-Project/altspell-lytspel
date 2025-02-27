@@ -17,7 +17,8 @@ classifiers = [
 dependencies = [
     "altspell-plugins==0.1.0",
     "lytspel==2.1.1",
-    "nlp-provider==0.1.0"
+    "nlp-provider==0.1.0",
+    "pyreadline3==3.5.4; os_name=='nt'"
 ]
 
 [build-system]
