@@ -24,9 +24,18 @@ from .reverse import Translator as RevTranslator
 
 class Plugin(PluginBase):
     def __init__(self):
+        self._name = "lytspel"
+        self._pretty_name = "Lytspel"
+
         self._lock = threading.Lock()
         self._fwd_translator = FwdTranslator()
         self._rev_translator = RevTranslator()
+
+    def name(self):
+        return self._name
+
+    def pretty_name(self):
+        return self._pretty_name
 
     def translate_to_respelling(self, traditional_text: str) -> str:
         # use a lock to make the function thread-safe
