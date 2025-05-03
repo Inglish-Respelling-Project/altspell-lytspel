@@ -31,10 +31,10 @@ class Plugin(PluginBase):
         self._fwd_translator = FwdTranslator()
         self._rev_translator = RevTranslator()
 
-    def name(self):
+    def name(self) -> str:
         return self._name
 
-    def pretty_name(self):
+    def pretty_name(self) -> str:
         return self._pretty_name
 
     def translate_to_respelling(self, traditional_text: str) -> str:
